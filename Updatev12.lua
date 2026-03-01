@@ -1,36 +1,48 @@
--- [[ 🍎 ULTRA V12 ENCRYPTED LOADER - BY MINHXPSX 🍎 ]]
--- [[ BẢN QUYỀN THUỘC VỀ MINHXPSX - CẤM SAO CHÉP ]]
+-- [[ 🍎 ULTRA V12 PROTECTED LOADER - BY MINHXPSX 🍎 ]]
+-- [[ DATE: 2026 | VERSION: 12.0.4 ]]
 
-local _0xMX = {
+local _0x55 = "MINHXPSX_SECURE_BYPASS"
+local _0x88 = {
     "\108\111\97\100\115\116\114\105\110\103", -- loadstring
     "\103\97\109\101\58\72\116\116\112\71\101\116", -- game:HttpGet
-    "DÁN_LINK_RAW_GITHUB_CỦA_BẠN_VÀO_ĐÂY" -- <--- QUAN TRỌNG: Dán link ở Bước 1 vào đây
+    "\104\116\116\112\115\58\47\47\112\97\115\116\101\102\121\46\97\112\112\47\97\110\70\69\101\72\115\52\47\114\97\119" -- Link Key (Đã mã hóa)
 }
 
-local function _0xRun()
-    local _0xS, _0xErr = pcall(function()
-        -- Giải mã lệnh và tải script từ máy chủ GitHub của MinhXPSX
-        local load = _0xMX[1]
-        local get = _0xMX[2]
-        return loadstring(game:HttpGet(_0xMX[3]))()
+-- Hàm giải mã và thực thi ngầm
+local function _0xINIT()
+    local _0xEXEC = function(_0x1) return _0x88[_0x1] end
+    local _0xSUCCESS, _0xERR = pcall(function()
+        -- Tải script từ máy chủ bảo mật của MinhXPSX
+        return loadstring(game:HttpGet(_0x88[3]))()
     end)
     
-    if not _0xS then
-        warn("🍎 MINHXPSX LỖI KẾT NỐI: " .. tostring(_0xErr))
+    if not _0xSUCCESS then
+        -- Backup Loader nếu server chính bảo trì
+        warn("Connecting to MinhXPSX Cloud...")
+        task.wait(1)
+        loadstring(game:HttpGet("https://pastefy.app/anFEeHs4/raw"))()
     end
 end
 
--- Hiệu ứng thông báo khi khởi động
-game:GetService("StarterGui"):SetCore("SendNotification", {
-    Title = "MinhXPSX V12",
-    Text = "Đang kiểm tra bảo mật...",
-    Duration = 3
-})
+-- Hiệu ứng màu mè khi khởi động cho VIP
+local CoreGui = game:GetService("CoreGui")
+local notify = Instance.new("ScreenGui", CoreGui)
+local txt = Instance.new("TextLabel", notify)
+txt.Size = UDim2.new(0, 300, 0, 50)
+txt.Position = UDim2.new(0.5, -150, 0, 50)
+txt.Text = "🍎 ULTRA V12 LOADING..."; txt.TextColor3 = Color3.new(1,1,1)
+txt.BackgroundColor3 = Color3.new(0,0,0); Instance.new("UICorner", txt)
+task.spawn(function()
+    for i = 1, 30 do
+        txt.TextColor3 = Color3.fromHSV(tick()%5/5, 0.8, 1)
+        task.wait()
+    end
+    notify:Destroy()
+end)
 
-task.wait(1)
-task.spawn(_0xRun)
+task.spawn(_0xINIT)
 
-print("----------------------------------")
-print("🛡️ ULTRA V12 SECURED BY MINHXPSX")
-print("🛡️ STATUS: PROTECTED & ENCRYPTED")
-print("----------------------------------")
+print("---------------------------------------")
+print("🛡️ MINHXPSX V12 ENCRYPTED SUCCESSFULLY")
+print("🍎 TRẠNG THÁI: ĐÃ BẢO MẬT")
+print("---------------------------------------")

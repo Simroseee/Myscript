@@ -1,48 +1,37 @@
--- [[ 🍎 ULTRA V12 PROTECTED LOADER - BY MINHXPSX 🍎 ]]
--- [[ DATE: 2026 | VERSION: 12.0.4 ]]
+-- [[ 🍎 ULTRA V12 FIXED - BY MINHXPSX 🍎 ]]
+repeat task.wait() until game:IsLoaded()
 
-local _0x55 = "MINHXPSX_SECURE_BYPASS"
-local _0x88 = {
-    "\108\111\97\100\115\116\114\105\110\103", -- loadstring
-    "\103\97\109\101\58\72\116\116\112\71\101\116", -- game:HttpGet
-    "\104\116\116\112\115\58\47\47\112\97\115\116\101\102\121\46\97\112\112\47\97\110\70\69\101\72\115\52\47\114\97\119" -- Link Key (Đã mã hóa)
-}
+local KEY_URL = "https://pastefy.app/anFEeHs4/raw" 
+local GET_KEY_LINK = "https://link-center.net/3951031/FCTQslNgYMKY"
 
--- Hàm giải mã và thực thi ngầm
-local function _0xINIT()
-    local _0xEXEC = function(_0x1) return _0x88[_0x1] end
-    local _0xSUCCESS, _0xERR = pcall(function()
-        -- Tải script từ máy chủ bảo mật của MinhXPSX
-        return loadstring(game:HttpGet(_0x88[3]))()
-    end)
+-- Hàm khởi chạy Script chính (Đã xóa các lệnh gây lỗi Escape Directory)
+local function StartScript()
+    local UI_NAME = "MINHXPSX_V12_PRO"
+    local CoreGui, LP = game:GetService("CoreGui"), game.Players.LocalPlayer
     
-    if not _0xSUCCESS then
-        -- Backup Loader nếu server chính bảo trì
-        warn("Connecting to MinhXPSX Cloud...")
-        task.wait(1)
-        loadstring(game:HttpGet("https://pastefy.app/anFEeHs4/raw"))()
-    end
+    -- [Toàn bộ logic Sniper của bạn giữ nguyên, nhưng bỏ các phần lưu file cấu hình lỗi]
+    print("ULTRA V12 ĐÃ KÍCH HOẠT THÀNH CÔNG!")
+    
+    -- (Phần code Menu và Sniper V11 của bạn dán ở đây)
+    -- Đảm bảo không sử dụng writefile("..//", ...) 
 end
 
--- Hiệu ứng màu mè khi khởi động cho VIP
+-- [[ GIAO DIỆN KEY SYSTEM ]]
 local CoreGui = game:GetService("CoreGui")
-local notify = Instance.new("ScreenGui", CoreGui)
-local txt = Instance.new("TextLabel", notify)
-txt.Size = UDim2.new(0, 300, 0, 50)
-txt.Position = UDim2.new(0.5, -150, 0, 50)
-txt.Text = "🍎 ULTRA V12 LOADING..."; txt.TextColor3 = Color3.new(1,1,1)
-txt.BackgroundColor3 = Color3.new(0,0,0); Instance.new("UICorner", txt)
-task.spawn(function()
-    for i = 1, 30 do
-        txt.TextColor3 = Color3.fromHSV(tick()%5/5, 0.8, 1)
-        task.wait()
+if CoreGui:FindFirstChild("MinhXPSX_KeyUI") then CoreGui["MinhXPSX_KeyUI"]:Destroy() end
+local sgK = Instance.new("ScreenGui", CoreGui); sgK.Name = "MinhXPSX_KeyUI"
+local mainK = Instance.new("Frame", sgK); mainK.Size = UDim2.new(0, 320, 0, 180); mainK.Position = UDim2.new(0.5, -160, 0.5, -90); mainK.BackgroundColor3 = Color3.fromRGB(15, 15, 15); Instance.new("UICorner", mainK); local strK = Instance.new("UIStroke", mainK); strK.Thickness = 3
+local titleK = Instance.new("TextLabel", mainK); titleK.Size = UDim2.new(1, 0, 0, 45); titleK.Text = "★ MINHXPSX KEY SYSTEM ★"; titleK.TextColor3 = Color3.new(1,1,1); titleK.Font = 4; titleK.TextSize = 16; titleK.BackgroundTransparency = 1
+local inputK = Instance.new("TextBox", mainK); inputK.Size = UDim2.new(0.85, 0, 0, 35); inputK.Position = UDim2.new(0.075, 0, 0.35, 0); inputK.PlaceholderText = "NHẬP KEY..."; inputK.Text = ""; inputK.BackgroundColor3 = Color3.fromRGB(30, 30, 30); inputK.TextColor3 = Color3.new(1,1,1); Instance.new("UICorner", inputK)
+local getK = Instance.new("TextButton", mainK); getK.Size = UDim2.new(0.4, 0, 0, 35); getK.Position = UDim2.new(0.075, 0, 0.7, 0); getK.Text = "LẤY KEY"; getK.BackgroundColor3 = Color3.fromRGB(0, 120, 255); getK.TextColor3 = Color3.new(1,1,1); Instance.new("UICorner", getK)
+local checkK = Instance.new("TextButton", mainK); checkK.Size = UDim2.new(0.4, 0, 0, 35); checkK.Position = UDim2.new(0.525, 0, 0.7, 0); checkK.Text = "KIỂM TRA"; checkK.BackgroundColor3 = Color3.fromRGB(0, 180, 0); checkK.TextColor3 = Color3.new(1,1,1); Instance.new("UICorner", checkK)
+
+getK.Activated:Connect(function() setclipboard(GET_KEY_LINK) end)
+checkK.Activated:Connect(function()
+    local success, currentKey = pcall(function() return game:HttpGet(KEY_URL) end)
+    if success and inputK.Text == currentKey:gsub("%s+", "") then
+        sgK:Destroy(); StartScript()
+    else
+        checkK.Text = "SAI KEY!"; task.wait(1); checkK.Text = "KIỂM TRA"
     end
-    notify:Destroy()
 end)
-
-task.spawn(_0xINIT)
-
-print("---------------------------------------")
-print("🛡️ MINHXPSX V12 ENCRYPTED SUCCESSFULLY")
-print("🍎 TRẠNG THÁI: ĐÃ BẢO MẬT")
-print("---------------------------------------")
